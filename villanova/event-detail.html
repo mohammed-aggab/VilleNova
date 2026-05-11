@@ -1,0 +1,114 @@
+<!DOCTYPE HTML>
+<!--
+  VilleNova - Détail événement
+  Basé sur Alpha by HTML5 UP (html5up.net | @ajlkn)
+-->
+<html lang="fr">
+  <head>
+    <title>VilleNova - Détail de l'événement</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <meta name="description" content="Détail complet de l'événement culturel sur VilleNova." />
+    <link rel="stylesheet" href="assets/css/fontawesome-all.min.css" />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body class="is-preload">
+    <div id="page-wrapper">
+
+      <!-- Header -->
+      <header id="header" role="banner">
+        <h1><a href="index.html">Ville<span>Nova</span></a></h1>
+        <nav id="nav" role="navigation" aria-label="Navigation principale">
+          <ul>
+            <li><a href="index.html">Accueil</a></li>
+            <li>
+              <a href="#" class="icon solid fa-angle-down" aria-haspopup="true">Catégories</a>
+              <ul aria-label="Catégories d'événements">
+                <li><a href="index.html#events" data-filter="concert">Concerts</a></li>
+                <li><a href="index.html#events" data-filter="exposition">Expositions</a></li>
+                <li><a href="index.html#events" data-filter="spectacle">Spectacles</a></li>
+                <li><a href="index.html#events" data-filter="festival">Festivals</a></li>
+              </ul>
+            </li>
+            <li><a href="index.html#about" class="button">À propos</a></li>
+          </ul>
+        </nav>
+      </header>
+
+      <!-- Main -->
+      <main id="main" class="container" role="main">
+
+        <!-- Fil d'Ariane -->
+        <nav class="breadcrumb" aria-label="Fil d'Ariane">
+          <ol>
+            <li><a href="index.html">Accueil</a></li>
+            <li aria-hidden="true">›</li>
+            <li id="breadcrumb-category">Événements</li>
+            <li aria-hidden="true">›</li>
+            <li id="breadcrumb-title" aria-current="page">Chargement…</li>
+          </ol>
+        </nav>
+
+        <!-- Message d'état -->
+        <div id="detail-status" role="status" aria-live="polite" aria-atomic="true"></div>
+
+        <!-- Contenu de l'événement (injecté par JS) -->
+        <article id="event-detail" aria-labelledby="event-title" class="box special event-detail-container">
+          <!-- Rempli dynamiquement -->
+        </article>
+
+        <!-- Événements similaires -->
+        <section id="related-events" aria-labelledby="related-title" class="related-section" hidden>
+          <h2 id="related-title" class="section-title">Dans la même catégorie</h2>
+          <div id="related-grid" class="row events-grid"></div>
+        </section>
+
+        <!-- Retour -->
+        <div class="back-action">
+          <a href="index.html" class="button alt">
+            <span class="icon solid fa-arrow-left" aria-hidden="true"></span>
+            Retour aux événements
+          </a>
+        </div>
+
+      </main>
+
+      <!-- Footer -->
+      <footer id="footer" role="contentinfo">
+        <ul class="icons" aria-label="Réseaux sociaux">
+          <li>
+            <a href="#" class="icon brands fa-twitter" aria-label="Suivez VilleNova sur Twitter">
+              <span class="label">Twitter</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="icon brands fa-facebook-f" aria-label="Suivez VilleNova sur Facebook">
+              <span class="label">Facebook</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="icon brands fa-instagram" aria-label="Suivez VilleNova sur Instagram">
+              <span class="label">Instagram</span>
+            </a>
+          </li>
+        </ul>
+        <ul class="copyright">
+          <li>&copy; VilleNova 2025. Tous droits réservés.</li>
+          <li>Design inspiré de <a href="http://html5up.net" rel="noopener">HTML5 UP</a></li>
+        </ul>
+      </footer>
+
+    </div><!-- /#page-wrapper -->
+
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.dropotron.min.js"></script>
+    <script src="assets/js/jquery.scrollex.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/detail.js"></script>
+  </body>
+</html>

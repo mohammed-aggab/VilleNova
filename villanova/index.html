@@ -1,0 +1,196 @@
+<!DOCTYPE HTML>
+<!--
+  VilleNova - Plateforme culturelle
+  Basé sur Alpha by HTML5 UP (html5up.net | @ajlkn)
+  CCA 3.0 license (html5up.net/license)
+-->
+<html lang="fr">
+  <head>
+    <title>VilleNova - Événements culturels</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <meta name="description" content="VilleNova centralise tous les événements culturels de la ville : concerts, expositions, spectacles." />
+    <link rel="stylesheet" href="assets/css/fontawesome-all.min.css" />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body class="landing is-preload">
+    <div id="page-wrapper">
+
+      <!-- Header -->
+      <header id="header" class="alt" role="banner">
+        <h1><a href="index.html">Ville<span>Nova</span></a></h1>
+        <nav id="nav" role="navigation" aria-label="Navigation principale">
+          <ul>
+            <li><a href="index.html" aria-current="page">Accueil</a></li>
+            <li>
+              <a href="#" class="icon solid fa-angle-down" aria-haspopup="true">Catégories</a>
+              <ul aria-label="Catégories d'événements">
+                <li><a href="#events" data-filter="concert">Concerts</a></li>
+                <li><a href="#events" data-filter="exposition">Expositions</a></li>
+                <li><a href="#events" data-filter="spectacle">Spectacles</a></li>
+                <li><a href="#events" data-filter="festival">Festivals</a></li>
+              </ul>
+            </li>
+            <li><a href="#about" class="button">À propos</a></li>
+          </ul>
+        </nav>
+      </header>
+
+      <!-- Banner -->
+      <section id="banner" aria-labelledby="banner-title">
+        <h2 id="banner-title">La culture, <br />au cœur de VilleNova</h2>
+        <p>Concerts, expositions, spectacles… Toute la programmation culturelle <br />de votre ville, en un seul endroit.</p>
+        <ul class="actions special">
+          <li><a href="#events" class="button primary">Voir les événements</a></li>
+          <li><a href="#about" class="button">En savoir plus</a></li>
+        </ul>
+      </section>
+
+      <!-- Main -->
+      <main id="main" class="container" role="main">
+
+        <!-- Intro -->
+        <section class="box special" aria-labelledby="intro-title">
+          <header class="major">
+            <h2 id="intro-title">La scène culturelle locale, enfin accessible</h2>
+            <p>VilleNova centralise l'ensemble des événements culturels pour redonner vie<br />
+            à la programmation locale et rapprocher les habitants de leur culture.</p>
+          </header>
+          <picture>
+            <source srcset="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=1200&q=80" media="(min-width: 737px)" />
+            <img
+              src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=800&q=80"
+              alt="Scène culturelle animée de VilleNova avec des artistes en représentation"
+              loading="lazy"
+              width="900"
+              height="400"
+            />
+          </picture>
+        </section>
+
+        <!-- Filtres & Recherche -->
+        <section class="box special" id="search-section" aria-labelledby="search-title">
+          <h2 id="search-title" class="visually-hidden">Recherche et filtres</h2>
+          <div class="search-bar">
+            <label for="search-input" class="visually-hidden">Rechercher un événement</label>
+            <input
+              type="search"
+              id="search-input"
+              placeholder="Rechercher un événement, artiste, lieu…"
+              aria-label="Rechercher un événement"
+              autocomplete="off"
+            />
+            <button id="search-btn" aria-label="Lancer la recherche">
+              <span class="icon solid fa-search" aria-hidden="true"></span>
+            </button>
+          </div>
+          <div class="filters" role="group" aria-label="Filtrer par catégorie">
+            <button class="filter-btn active" data-filter="all" aria-pressed="true">Tous</button>
+            <button class="filter-btn" data-filter="concert" aria-pressed="false">
+              <span class="icon solid fa-music" aria-hidden="true"></span> Concerts
+            </button>
+            <button class="filter-btn" data-filter="exposition" aria-pressed="false">
+              <span class="icon solid fa-palette" aria-hidden="true"></span> Expositions
+            </button>
+            <button class="filter-btn" data-filter="spectacle" aria-pressed="false">
+              <span class="icon solid fa-theater-masks" aria-hidden="true"></span> Spectacles
+            </button>
+            <button class="filter-btn" data-filter="festival" aria-pressed="false">
+              <span class="icon solid fa-star" aria-hidden="true"></span> Festivals
+            </button>
+          </div>
+        </section>
+
+        <!-- Liste des événements -->
+        <section id="events" aria-labelledby="events-title">
+          <h2 id="events-title" class="section-title">Événements à venir</h2>
+
+          <!-- Message d'état (chargement, erreur, vide) -->
+          <div id="events-status" role="status" aria-live="polite" aria-atomic="true"></div>
+
+          <!-- Grille des événements (injectée par JS) -->
+          <div id="events-grid" class="row events-grid" aria-label="Liste des événements">
+            <!-- Les cartes événements sont générées dynamiquement -->
+          </div>
+
+          <!-- Pagination -->
+          <div id="pagination" class="pagination" role="navigation" aria-label="Pagination des événements"></div>
+        </section>
+
+        <!-- Features / Catégories -->
+        <section class="box special features" aria-labelledby="features-title">
+          <h2 id="features-title" class="visually-hidden">Nos catégories</h2>
+          <div class="features-row">
+            <section aria-labelledby="feat-concerts">
+              <span class="icon solid major fa-music accent2" aria-hidden="true"></span>
+              <h3 id="feat-concerts">Concerts</h3>
+              <p>Du classique au contemporain, des scènes intimistes aux grandes salles, retrouvez tous les concerts de la ville.</p>
+            </section>
+            <section aria-labelledby="feat-expositions">
+              <span class="icon solid major fa-palette accent3" aria-hidden="true"></span>
+              <h3 id="feat-expositions">Expositions</h3>
+              <p>Peinture, sculpture, photographie, art numérique… Explorez la création artistique locale et internationale.</p>
+            </section>
+          </div>
+          <div class="features-row">
+            <section aria-labelledby="feat-spectacles">
+              <span class="icon solid major fa-theater-masks accent4" aria-hidden="true"></span>
+              <h3 id="feat-spectacles">Spectacles</h3>
+              <p>Théâtre, danse, cirque, comédie musicale — la scène vivante dans toute sa diversité.</p>
+            </section>
+            <section aria-labelledby="feat-festivals">
+              <span class="icon solid major fa-star accent5" aria-hidden="true"></span>
+              <h3 id="feat-festivals">Festivals</h3>
+              <p>Les grands rendez-vous culturels annuels qui rassemblent la communauté autour d'une passion commune.</p>
+            </section>
+          </div>
+        </section>
+
+      </main>
+
+      <!-- À propos -->
+      <section id="about" aria-labelledby="about-title">
+        <h2 id="about-title">Une ville, une culture, une plateforme</h2>
+        <p>VilleNova est né d'un constat simple : la richesse culturelle locale mérite d'être mieux partagée.<br />
+        Moderne, inclusive et éco-responsable, notre plateforme donne accès à tous les événements culturels en un clic.</p>
+      </section>
+
+      <!-- Footer -->
+      <footer id="footer" role="contentinfo">
+        <ul class="icons" aria-label="Réseaux sociaux">
+          <li>
+            <a href="#" class="icon brands fa-twitter" aria-label="Suivez VilleNova sur Twitter">
+              <span class="label">Twitter</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="icon brands fa-facebook-f" aria-label="Suivez VilleNova sur Facebook">
+              <span class="label">Facebook</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="icon brands fa-instagram" aria-label="Suivez VilleNova sur Instagram">
+              <span class="label">Instagram</span>
+            </a>
+          </li>
+        </ul>
+        <ul class="copyright">
+          <li>&copy; VilleNova 2025. Tous droits réservés.</li>
+          <li>Design inspiré de <a href="http://html5up.net" rel="noopener">HTML5 UP</a></li>
+        </ul>
+      </footer>
+
+    </div><!-- /#page-wrapper -->
+
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.dropotron.min.js"></script>
+    <script src="assets/js/jquery.scrollex.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/app.js"></script>
+  </body>
+</html>

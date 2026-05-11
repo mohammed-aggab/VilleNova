@@ -1,0 +1,1183 @@
+// ============================================================
+// VilleNova - style.scss
+// Basé sur le système de design Alpha by HTML5 UP
+// Architecture : variables → mixins → base → composants → pages
+// ============================================================
+
+@import 'libs/vars';
+@import 'libs/functions';
+@import 'libs/mixins';
+@import 'libs/vendor';
+@import 'libs/breakpoints';
+@import 'libs/html-grid';
+@import url('../assets/css/fontawesome-all.min.css');
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600&display=swap');
+
+// ============================================================
+// VARIABLES VILLENOVA
+// Override / extension de la palette Alpha
+// ============================================================
+
+$vn-primary:    #e86c3a;   // Orange culturel
+$vn-secondary:  #2c3e6b;   // Bleu nuit
+$vn-accent:     #f2c94c;   // Jaune festif
+$vn-dark:       #1a1a2e;   // Fond sombre header
+$vn-light:      #f8f6f2;   // Fond clair
+$vn-text:       #555555;
+$vn-text-light: #999999;
+$vn-border:     #e0ddd8;
+$vn-success:    #7fcdb8;   // accent3 du template
+$vn-card-bg:    #ffffff;
+
+// Catégories
+$cat-concert:    #e86c3a;
+$cat-exposition: #7fcdb8;
+$cat-spectacle:  #90b0ba;
+$cat-festival:   #e5cb95;
+
+// Spacing
+$spacing-xs:  0.5rem;
+$spacing-sm:  1rem;
+$spacing-md:  2rem;
+$spacing-lg:  3rem;
+$spacing-xl:  5rem;
+
+// Breakpoints (réutilisation du système Alpha)
+@include breakpoints((
+  wide:      ( 1281px,  1680px ),
+  normal:    ( 981px,   1280px ),
+  narrow:    ( 737px,   980px  ),
+  narrower:  ( 737px,   840px  ),
+  mobile:    ( 481px,   736px  ),
+  mobilep:   ( null,    480px  )
+));
+
+// ============================================================
+// MIXINS VILLENOVA
+// ============================================================
+
+/// Badge catégorie
+@mixin category-badge($color) {
+  background: $color;
+  color: #fff;
+  border-radius: 3px;
+  padding: 0.2em 0.6em;
+  font-size: 0.75em;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/// Carte événement
+@mixin event-card {
+  background: $vn-card-bg;
+  border: 1px solid $vn-border;
+  border-radius: 6px;
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+
+  &:hover,
+  &:focus-within {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+    outline: none;
+  }
+}
+
+/// Bouton primaire VilleNova
+@mixin btn-primary {
+  background: $vn-primary;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 0.7em 1.8em;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.1s ease;
+  text-decoration: none;
+  display: inline-block;
+
+  &:hover {
+    background: darken($vn-primary, 8%);
+    border-bottom-color: transparent;
+    color: #fff;
+    transform: translateY(-1px);
+  }
+
+  &:focus-visible {
+    outline: 3px solid $vn-accent;
+    outline-offset: 2px;
+  }
+}
+
+/// Responsive image
+@mixin responsive-img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  display: block;
+}
+
+// ============================================================
+// RESET & BASE (hérité et adapté du template Alpha)
+// ============================================================
+
+html, body, div, span, h1, h2, h3, h4, h5, h6, p,
+blockquote, pre, a, abbr, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp, small,
+strike, strong, sub, sup, tt, var, b, u, i, center,
+dl, dt, dd, ol, ul, li, fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, figure,
+figcaption, footer, header, hgroup, menu, nav,
+output, ruby, section, summary, time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: $vn-light;
+  color: $vn-text;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 1.65em;
+  -webkit-text-size-adjust: none;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+a {
+  color: $vn-primary;
+  text-decoration: none;
+  border-bottom: dotted 1px;
+  transition: color 0.2s ease, border-bottom-color 0.2s ease;
+
+  &:hover {
+    color: darken($vn-primary, 10%);
+    border-bottom-color: transparent;
+  }
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+// Accessibilité - visually hidden
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+// Focus visible global
+:focus-visible {
+  outline: 3px solid $vn-accent;
+  outline-offset: 2px;
+}
+
+// ============================================================
+// LAYOUT CONTAINER
+// ============================================================
+
+#page-wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  max-width: 60em;
+  margin: 0 auto;
+  padding: 0 $spacing-md;
+  width: 100%;
+}
+
+// ============================================================
+// HEADER
+// ============================================================
+
+#header {
+  background: $vn-dark;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 $spacing-md;
+  height: 3.5em;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.3);
+  transition: background 0.3s ease;
+
+  h1 {
+    font-size: 1.25em;
+    font-weight: 600;
+    line-height: 1;
+
+    a {
+      color: #fff;
+      border: none;
+      letter-spacing: 0.05em;
+
+      span {
+        color: $vn-primary;
+      }
+
+      &:hover {
+        color: $vn-accent;
+      }
+    }
+  }
+
+  // Header transparent sur landing
+  &.alt {
+    background: rgba($vn-dark, 0.6);
+    backdrop-filter: blur(4px);
+  }
+
+  // Nav desktop
+  #nav {
+    ul {
+      display: flex;
+      align-items: center;
+      gap: $spacing-sm;
+      margin: 0;
+
+      li {
+        position: relative;
+
+        a {
+          color: rgba(#fff, 0.85);
+          border: none;
+          padding: 0.5em 0.8em;
+          font-size: 0.9em;
+          border-radius: 4px;
+          transition: color 0.2s ease, background 0.2s ease;
+
+          &:hover,
+          &[aria-current="page"] {
+            color: #fff;
+            background: rgba(#fff, 0.08);
+          }
+
+          &.button {
+            @include btn-primary;
+            font-size: 0.85em;
+            padding: 0.5em 1.2em;
+          }
+        }
+
+        // Sous-menu dropdown
+        ul {
+          display: none;
+          position: absolute;
+          top: calc(100% + 0.5em);
+          right: 0;
+          flex-direction: column;
+          background: $vn-dark;
+          border: 1px solid rgba(#fff, 0.1);
+          border-radius: 6px;
+          padding: 0.5em 0;
+          min-width: 160px;
+          box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+          gap: 0;
+
+          li a {
+            display: block;
+            padding: 0.5em 1em;
+            border-radius: 0;
+            font-size: 0.85em;
+
+            &:hover {
+              background: rgba($vn-primary, 0.15);
+              color: $vn-primary;
+            }
+          }
+        }
+
+        &:hover > ul,
+        &:focus-within > ul {
+          display: flex;
+        }
+      }
+    }
+  }
+
+  @include breakpoint('<=mobile') {
+    padding: 0 $spacing-sm;
+
+    h1 {
+      font-size: 1.1em;
+    }
+
+    #nav ul {
+      gap: 0.3em;
+    }
+  }
+}
+
+// ============================================================
+// BANNER (page index)
+// ============================================================
+
+#banner {
+  background: $vn-dark url('../images/banner.jpg') center center / cover no-repeat;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: $spacing-xl $spacing-md;
+  min-height: 100vh;
+  position: relative;
+
+  // Overlay dégradé
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      rgba($vn-dark, 0.7) 0%,
+      rgba($vn-secondary, 0.55) 60%,
+      rgba($vn-dark, 0.85) 100%
+    );
+  }
+
+  h2, p, .actions {
+    position: relative;
+    z-index: 1;
+  }
+
+  h2 {
+    color: #fff;
+    font-size: 2.8em;
+    font-weight: 600;
+    line-height: 1.2;
+    margin-bottom: 0.6em;
+    text-shadow: 0 2px 12px rgba(0,0,0,0.4);
+  }
+
+  p {
+    color: rgba(#fff, 0.85);
+    font-size: 1.1em;
+    margin-bottom: $spacing-md;
+    max-width: 600px;
+  }
+
+  @include breakpoint('<=mobile') {
+    min-height: 80vh;
+
+    h2 { font-size: 2em; }
+    p { font-size: 1em; }
+  }
+
+  @include breakpoint('<=mobilep') {
+    h2 { font-size: 1.6em; }
+  }
+}
+
+// ============================================================
+// BUTTONS (système Alpha + VilleNova)
+// ============================================================
+
+.button {
+  @include btn-primary;
+  background: transparent;
+  border: 2px solid rgba(#fff, 0.6);
+  color: #fff;
+
+  &:hover {
+    background: rgba(#fff, 0.1);
+    border-color: #fff;
+    color: #fff;
+  }
+
+  &.primary {
+    background: $vn-primary;
+    border-color: $vn-primary;
+
+    &:hover {
+      background: darken($vn-primary, 8%);
+      border-color: darken($vn-primary, 8%);
+    }
+  }
+
+  &.alt {
+    background: transparent;
+    border: 2px solid $vn-border;
+    color: $vn-text;
+
+    &:hover {
+      border-color: $vn-primary;
+      color: $vn-primary;
+      background: transparent;
+    }
+  }
+
+  .icon {
+    margin-right: 0.4em;
+  }
+}
+
+.actions.special {
+  display: flex;
+  gap: $spacing-sm;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+
+  li {
+    list-style: none;
+  }
+}
+
+// ============================================================
+// MAIN CONTENT
+// ============================================================
+
+#main {
+  padding-top: $spacing-lg;
+  padding-bottom: $spacing-lg;
+  flex: 1;
+}
+
+// ============================================================
+// BOX SPECIAL (hérité Alpha)
+// ============================================================
+
+.box.special {
+  background: $vn-card-bg;
+  border: 1px solid $vn-border;
+  border-radius: 6px;
+  padding: $spacing-md;
+  margin-bottom: $spacing-md;
+
+  header.major {
+    text-align: center;
+    margin-bottom: $spacing-md;
+
+    h2 {
+      color: $vn-secondary;
+      font-size: 1.8em;
+      font-weight: 600;
+      margin-bottom: 0.5em;
+      line-height: 1.3;
+    }
+
+    p {
+      color: $vn-text-light;
+      font-size: 1em;
+    }
+  }
+
+  picture, .image.featured {
+    display: block;
+    margin: 0 (-$spacing-md) (-$spacing-md);
+    overflow: hidden;
+    border-radius: 0 0 6px 6px;
+
+    img {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+      display: block;
+    }
+  }
+}
+
+// ============================================================
+// SEARCH & FILTERS
+// ============================================================
+
+#search-section {
+  padding: $spacing-md;
+
+  .search-bar {
+    display: flex;
+    gap: 0;
+    margin-bottom: $spacing-sm;
+    border: 2px solid $vn-border;
+    border-radius: 4px;
+    overflow: hidden;
+    transition: border-color 0.2s ease;
+
+    &:focus-within {
+      border-color: $vn-primary;
+    }
+
+    #search-input {
+      flex: 1;
+      border: none;
+      padding: 0.75em $spacing-sm;
+      font-size: 1em;
+      background: #fff;
+      color: $vn-text;
+      outline: none;
+      font-family: inherit;
+
+      &::placeholder {
+        color: $vn-text-light;
+      }
+    }
+
+    #search-btn {
+      background: $vn-primary;
+      border: none;
+      color: #fff;
+      padding: 0 $spacing-sm;
+      cursor: pointer;
+      font-size: 1.1em;
+      transition: background 0.2s ease;
+
+      &:hover {
+        background: darken($vn-primary, 8%);
+      }
+    }
+  }
+
+  .filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5em;
+    justify-content: center;
+
+    .filter-btn {
+      background: transparent;
+      border: 2px solid $vn-border;
+      color: $vn-text;
+      padding: 0.4em 1em;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 0.85em;
+      font-family: inherit;
+      transition: all 0.2s ease;
+
+      .icon {
+        margin-right: 0.3em;
+      }
+
+      &:hover,
+      &:focus-visible {
+        border-color: $vn-primary;
+        color: $vn-primary;
+      }
+
+      &.active,
+      &[aria-pressed="true"] {
+        background: $vn-primary;
+        border-color: $vn-primary;
+        color: #fff;
+      }
+    }
+  }
+}
+
+// ============================================================
+// EVENTS GRID & CARDS
+// ============================================================
+
+.section-title {
+  color: $vn-secondary;
+  font-size: 1.5em;
+  font-weight: 600;
+  margin-bottom: $spacing-md;
+  padding-bottom: 0.5em;
+  border-bottom: 2px solid $vn-primary;
+  display: inline-block;
+}
+
+#events {
+  margin-bottom: $spacing-lg;
+}
+
+.events-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: $spacing-md;
+  margin: 0;
+
+  @include breakpoint('<=narrow') {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include breakpoint('<=mobile') {
+    grid-template-columns: 1fr;
+  }
+}
+
+// Carte événement
+.event-card {
+  @include event-card;
+
+  a {
+    border: none;
+    color: inherit;
+    display: block;
+    height: 100%;
+
+    &:hover {
+      color: inherit;
+    }
+  }
+
+  .card-image {
+    position: relative;
+    overflow: hidden;
+
+    img {
+      @include responsive-img;
+      transition: transform 0.3s ease;
+    }
+
+    .card-category {
+      position: absolute;
+      top: 0.75em;
+      left: 0.75em;
+    }
+
+    .card-date-badge {
+      position: absolute;
+      bottom: 0.75em;
+      right: 0.75em;
+      background: rgba($vn-dark, 0.85);
+      color: #fff;
+      padding: 0.3em 0.6em;
+      border-radius: 4px;
+      font-size: 0.78em;
+      font-weight: 600;
+    }
+  }
+
+  &:hover .card-image img {
+    transform: scale(1.04);
+  }
+
+  .card-body {
+    padding: $spacing-sm;
+
+    h3 {
+      color: $vn-secondary;
+      font-size: 1em;
+      font-weight: 600;
+      margin-bottom: 0.4em;
+      line-height: 1.3;
+
+      // Limite à 2 lignes
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .card-location {
+      color: $vn-text-light;
+      font-size: 0.85em;
+      margin-bottom: 0.5em;
+
+      .icon {
+        margin-right: 0.25em;
+        color: $vn-primary;
+      }
+    }
+
+    .card-desc {
+      color: $vn-text;
+      font-size: 0.85em;
+      line-height: 1.5;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+  }
+
+  .card-footer {
+    padding: 0.6em $spacing-sm;
+    border-top: 1px solid $vn-border;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .card-price {
+      font-weight: 600;
+      color: $vn-primary;
+      font-size: 0.9em;
+    }
+
+    .card-link {
+      font-size: 0.8em;
+      color: $vn-primary;
+      border: none;
+      font-weight: 600;
+
+      &:hover {
+        color: darken($vn-primary, 10%);
+      }
+    }
+  }
+}
+
+// Badges catégories
+.badge {
+  display: inline-block;
+  border-radius: 3px;
+  padding: 0.2em 0.6em;
+  font-size: 0.75em;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #fff;
+
+  &.badge-concert    { background: $cat-concert; }
+  &.badge-exposition { background: $cat-exposition; }
+  &.badge-spectacle  { background: $cat-spectacle; }
+  &.badge-festival   { background: $cat-festival; color: $vn-dark; }
+  &.badge-default    { background: $vn-secondary; }
+}
+
+// ============================================================
+// STATUS MESSAGES
+// ============================================================
+
+#events-status,
+#detail-status {
+  text-align: center;
+  padding: $spacing-md;
+  color: $vn-text-light;
+  font-size: 0.95em;
+
+  .spinner {
+    display: inline-block;
+    width: 2em;
+    height: 2em;
+    border: 3px solid $vn-border;
+    border-top-color: $vn-primary;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    margin-bottom: 0.5em;
+  }
+
+  .error-msg {
+    color: #c0392b;
+
+    .icon {
+      margin-right: 0.4em;
+    }
+  }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+// ============================================================
+// PAGINATION
+// ============================================================
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 0.4em;
+  margin-top: $spacing-md;
+
+  button {
+    background: $vn-card-bg;
+    border: 2px solid $vn-border;
+    color: $vn-text;
+    width: 2.4em;
+    height: 2.4em;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: inherit;
+    font-weight: 600;
+    transition: all 0.2s ease;
+
+    &:hover:not(:disabled) {
+      border-color: $vn-primary;
+      color: $vn-primary;
+    }
+
+    &.active {
+      background: $vn-primary;
+      border-color: $vn-primary;
+      color: #fff;
+    }
+
+    &:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+
+    &:focus-visible {
+      outline: 3px solid $vn-accent;
+      outline-offset: 2px;
+    }
+  }
+}
+
+// ============================================================
+// FEATURES SECTION (Alpha style adapté)
+// ============================================================
+
+.box.special.features {
+  .features-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: $spacing-md;
+    margin-bottom: $spacing-md;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    section {
+      text-align: center;
+      padding: $spacing-sm;
+
+      .icon.major {
+        display: block;
+        font-size: 2.5em;
+        margin-bottom: 0.5em;
+        line-height: 1;
+
+        &.accent2 { color: $cat-concert; }
+        &.accent3 { color: $cat-exposition; }
+        &.accent4 { color: $cat-spectacle; }
+        &.accent5 { color: darken($cat-festival, 15%); }
+      }
+
+      h3 {
+        color: $vn-secondary;
+        font-size: 1.1em;
+        font-weight: 600;
+        margin-bottom: 0.5em;
+      }
+
+      p {
+        font-size: 0.9em;
+        color: $vn-text-light;
+        line-height: 1.6;
+      }
+    }
+
+    @include breakpoint('<=mobile') {
+      grid-template-columns: 1fr;
+    }
+  }
+}
+
+// ============================================================
+// ABOUT / CTA SECTION
+// ============================================================
+
+#about {
+  background: $vn-secondary;
+  text-align: center;
+  padding: $spacing-xl $spacing-md;
+
+  h2 {
+    color: #fff;
+    font-size: 2em;
+    font-weight: 600;
+    margin-bottom: 0.6em;
+  }
+
+  p {
+    color: rgba(#fff, 0.8);
+    font-size: 1.05em;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+
+  @include breakpoint('<=mobile') {
+    h2 { font-size: 1.5em; }
+    p { font-size: 0.95em; }
+  }
+}
+
+// ============================================================
+// FOOTER
+// ============================================================
+
+#footer {
+  background: $vn-dark;
+  text-align: center;
+  padding: $spacing-md;
+  margin-top: auto;
+
+  ul.icons {
+    display: flex;
+    justify-content: center;
+    gap: $spacing-sm;
+    margin-bottom: $spacing-sm;
+
+    li a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 2.5em;
+      height: 2.5em;
+      border-radius: 50%;
+      background: rgba(#fff, 0.08);
+      color: rgba(#fff, 0.6);
+      border: none;
+      font-size: 1em;
+      transition: background 0.2s ease, color 0.2s ease;
+
+      &:hover {
+        background: $vn-primary;
+        color: #fff;
+      }
+    }
+  }
+
+  ul.copyright {
+    display: flex;
+    justify-content: center;
+    gap: $spacing-sm;
+    flex-wrap: wrap;
+
+    li {
+      color: rgba(#fff, 0.4);
+      font-size: 0.8em;
+
+      a {
+        color: rgba(#fff, 0.6);
+        border-bottom-color: transparent;
+
+        &:hover {
+          color: $vn-primary;
+        }
+      }
+    }
+  }
+}
+
+// ============================================================
+// BREADCRUMB
+// ============================================================
+
+.breadcrumb {
+  margin-bottom: $spacing-md;
+
+  ol {
+    display: flex;
+    align-items: center;
+    gap: 0.4em;
+    flex-wrap: wrap;
+
+    li {
+      font-size: 0.85em;
+      color: $vn-text-light;
+
+      a {
+        color: $vn-primary;
+        border: none;
+
+        &:hover {
+          color: darken($vn-primary, 10%);
+        }
+      }
+
+      &[aria-current="page"] {
+        color: $vn-text;
+        font-weight: 600;
+      }
+    }
+  }
+}
+
+// ============================================================
+// EVENT DETAIL PAGE
+// ============================================================
+
+.event-detail-container {
+  padding: 0;
+  overflow: hidden;
+
+  .event-detail-hero {
+    position: relative;
+
+    picture img,
+    img.detail-img {
+      width: 100%;
+      height: 400px;
+      object-fit: cover;
+      display: block;
+
+      @include breakpoint('<=mobile') {
+        height: 220px;
+      }
+    }
+
+    .detail-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: $spacing-md;
+      background: linear-gradient(to top, rgba($vn-dark, 0.9) 0%, transparent 100%);
+
+      h1 {
+        color: #fff;
+        font-size: 2em;
+        font-weight: 600;
+        line-height: 1.2;
+        margin-bottom: 0.3em;
+        text-shadow: 0 2px 6px rgba(0,0,0,0.4);
+
+        @include breakpoint('<=mobile') {
+          font-size: 1.4em;
+        }
+      }
+    }
+  }
+
+  .event-detail-body {
+    padding: $spacing-md;
+    display: grid;
+    grid-template-columns: 1fr 280px;
+    gap: $spacing-md;
+
+    @include breakpoint('<=narrow') {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .event-description {
+    h2 {
+      color: $vn-secondary;
+      font-size: 1.3em;
+      font-weight: 600;
+      margin-bottom: 0.5em;
+    }
+
+    p {
+      line-height: 1.75;
+      color: $vn-text;
+      margin-bottom: 1em;
+    }
+  }
+
+  .event-meta {
+    background: $vn-light;
+    border: 1px solid $vn-border;
+    border-radius: 6px;
+    padding: $spacing-sm;
+    align-self: start;
+
+    h3 {
+      color: $vn-secondary;
+      font-size: 1em;
+      font-weight: 600;
+      margin-bottom: $spacing-sm;
+      padding-bottom: 0.5em;
+      border-bottom: 2px solid $vn-primary;
+    }
+
+    .meta-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6em;
+      margin-bottom: 0.75em;
+      font-size: 0.9em;
+
+      .icon {
+        color: $vn-primary;
+        min-width: 1.2em;
+        margin-top: 0.1em;
+      }
+
+      .meta-label {
+        font-weight: 600;
+        color: $vn-secondary;
+        display: block;
+        font-size: 0.8em;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+
+      .meta-value {
+        color: $vn-text;
+      }
+    }
+
+    .btn-ticket {
+      @include btn-primary;
+      width: 100%;
+      text-align: center;
+      margin-top: $spacing-sm;
+      display: block;
+    }
+  }
+}
+
+// ============================================================
+// RELATED EVENTS
+// ============================================================
+
+.related-section {
+  margin-top: $spacing-lg;
+}
+
+// ============================================================
+// BACK LINK
+// ============================================================
+
+.back-action {
+  margin-top: $spacing-md;
+  margin-bottom: $spacing-lg;
+}
+
+// ============================================================
+// ROW UTILITY (hérité Alpha)
+// ============================================================
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-md;
+
+  .col-6 {
+    flex: 0 0 calc(50% - #{$spacing-sm});
+  }
+
+  @include breakpoint('<=narrower') {
+    .col-12-narrower {
+      flex: 0 0 100%;
+    }
+  }
+}
